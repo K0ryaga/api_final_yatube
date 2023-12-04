@@ -1,7 +1,5 @@
 from pathlib import Path
 
-from datetime import timedelta
-
 import os
 from dotenv import load_dotenv
 
@@ -109,4 +107,3 @@ REST_FRAMEWORK = {
 }
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
