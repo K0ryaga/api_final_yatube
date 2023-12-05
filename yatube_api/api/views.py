@@ -4,7 +4,6 @@ from rest_framework.permissions import (IsAuthenticated,
                                         IsAuthenticatedOrReadOnly)
 from rest_framework import viewsets, status, mixins, filters
 from rest_framework.pagination import LimitOffsetPagination
-from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
 
 
