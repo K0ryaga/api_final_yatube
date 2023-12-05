@@ -53,7 +53,9 @@ class CommentViewSet(viewsets.ModelViewSet):
         return get_object_or_404(Post, id=post_id)
 
 
-class FollowViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, viewsets.GenericViewSet):
+class FollowViewSet(mixins.ListModelMixin,
+                    mixins.CreateModelMixin,
+                    viewsets.GenericViewSet):
     serializer_class = FollowSerializer
     permission_classes = (IsAuthenticated,)
     filter_backends = [filters.SearchFilter]
