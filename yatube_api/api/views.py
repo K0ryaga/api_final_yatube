@@ -25,15 +25,10 @@ class PostViewSet(viewsets.ModelViewSet):
         serializer.save(author=self.request.user)
 
 
-class GroupViewSet(viewsets.ModelViewSet):
+class GroupViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
-
-    def handle_method_not_allowed(self, request, *args, **kwargs):
-        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
-
-    create = update = partial_update = destroy = handle_method_not_allowed
 
 
 class CommentViewSet(viewsets.ModelViewSet):
@@ -58,7 +53,7 @@ class FollowViewSet(mixins.ListModelMixin,
     serializer_class = FollowSerializer
     permission_classes = (IsAuthenticated,)
     filter_backends = [filters.SearchFilter]
-    search_fields = ['following__username']
+    search_fields = ('following__username',)
 
     def get_queryset(self):
         queryset = Follow.objects.filter(user=self.request.user)

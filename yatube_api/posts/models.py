@@ -82,16 +82,19 @@ class Follow(models.Model):
         User,
         on_delete=models.CASCADE,
         related_name='following',
-        verbose_name='Подписчик')
+        verbose_name='Подписчик'
+    )
     following = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
         related_name='followers',
-        verbose_name='Подписка')
+        verbose_name='Подписка'
+    )
 
     class Meta:
         verbose_name = 'Подписка'
         verbose_name_plural = 'Подписки'
+        unique_together = ['user', 'following']
 
     def __str__(self):
         return (
